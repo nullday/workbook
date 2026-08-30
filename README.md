@@ -33,11 +33,11 @@
 | # | Этап | Что делаете | Документ | Время |
 |---|---|---|---|---|
 | 1 | **Сдерживание** | Изоляция сети, отключение VPN и бэкап-носителей, фиксация инцидента | [Первые 24 часа](checklists/first-24-hours.md) · [network-isolation.ps1](scripts/network-isolation.ps1) | 0–2 ч |
-| 2 | **Оценка ущерба** | Что уцелело, что зашифровано, какой штамм, есть ли публичный дешифратор | [Первые 24 часа](checklists/first-24-hours.md) | 1–3 ч |
+| 2 | **Оценка ущерба** | Что уцелело, что зашифровано, какой штамм, есть ли публичный дешифратор | [Первые 24 часа](checklists/first-24-hours.md) · [Проверка расшифровки](checklists/decryptor-check.md) | 1–3 ч |
 | 3 | **Аудит бэкапов** | Проверка носителей, дат, целостности и восстановимости копий с чистой машины | [Аудит резервных копий](checklists/backup-audit.md) · [backup-check.ps1](scripts/backup-check.ps1) | 2–6 ч |
 | 4 | **Поиск точки входа** | RDP, VPN, почта, уязвимый периметр, скомпрометированные учётные записи | [Первые 24 часа](checklists/first-24-hours.md) | 2–8 ч |
 | 5 | **Согласование плана** | План восстановления и акт об инциденте для руководства | [План восстановления](templates/recovery-plan.md) · [Акт об инциденте](templates/incident-report.md) | 1–2 ч |
-| 6 | **Развёртывание ядра** | Сеть → DNS/AD → файловый сервер: чистая установка ОС и возврат данных из бэкапов | [MikroTik](playbooks/mikrotik/README.md) · [Active Directory](playbooks/active-directory/README.md) · [Файловый сервер](playbooks/file-server/README.md) | 8–17 ч |
+| 6 | **Развёртывание ядра** | Сеть → гипервизор → DNS/AD → файловый сервер: чистая установка и возврат данных из бэкапов | [MikroTik](playbooks/mikrotik/README.md) · [Hyper-V](playbooks/hyper-v/README.md) · [Active Directory](playbooks/active-directory/README.md) · [Файловый сервер](playbooks/file-server/README.md) | 8–17 ч |
 | 7 | **Бизнес-приложения** | 1С, почта, отраслевое ПО — только после того, как поднялся домен | [Сервер 1С](playbooks/1c-server/README.md) · [Exchange](playbooks/exchange/README.md) | 7–14 ч |
 | 8 | **Рабочие места** | Массовая переустановка, смена всех паролей, ввод в домен | [Рабочие места](playbooks/workstations/README.md) | 1–3 ч × N |
 | 9 | **Проверка перед запуском** | Контроль до возврата инфраструктуры в продуктив | [Проверка перед запуском](checklists/pre-launch-verification.md) | 2–4 ч |
@@ -67,10 +67,12 @@ ransomware-recovery-kit/
 │
 ├── checklists/
 │   ├── first-24-hours.md          # Что делать в первые 24 часа
+│   ├── decryptor-check.md         # Проверка возможности расшифровки
 │   ├── backup-audit.md            # Аудит резервных копий
 │   └── pre-launch-verification.md # Проверка перед запуском систем
 │
 ├── playbooks/
+│   ├── hyper-v/                   # Восстановление хоста Hyper-V
 │   ├── active-directory/          # Восстановление AD с нуля
 │   ├── 1c-server/                 # Восстановление 1С:Предприятие
 │   ├── file-server/               # Восстановление файлового сервера
@@ -96,6 +98,7 @@ ransomware-recovery-kit/
 | Документ | Когда использовать |
 |---|---|
 | [Первые 24 часа](checklists/first-24-hours.md) | Сразу после обнаружения атаки |
+| [Проверка возможности расшифровки](checklists/decryptor-check.md) | После идентификации штамма, до решения о выкупе |
 | [Аудит резервных копий](checklists/backup-audit.md) | Перед началом восстановления |
 | [Проверка перед запуском](checklists/pre-launch-verification.md) | После восстановления, до включения |
 
@@ -105,6 +108,7 @@ ransomware-recovery-kit/
 
 | Система | Типовое время | Сложность |
 |---|---|---|
+| [Hyper-V (хост виртуализации)](playbooks/hyper-v/README.md) | 3–6 часов + ВМ | ⭐⭐⭐ |
 | [Active Directory](playbooks/active-directory/README.md) | 4–8 часов | ⭐⭐⭐ |
 | [Сервер 1С](playbooks/1c-server/README.md) | 3–6 часов | ⭐⭐⭐ |
 | [Файловый сервер](playbooks/file-server/README.md) | 2–4 часа | ⭐⭐ |
