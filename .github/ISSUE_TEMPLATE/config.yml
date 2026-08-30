@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 🔐 Сообщить об уязвимости или опасной рекомендации
+    url: https://github.com/nullday/workbook/security/policy
+    about: Не создавайте публичный Issue для проблем безопасности — см. SECURITY.md и пишите на sos@nullday.ru
+  - name: 🆘 Нужна помощь с реальным инцидентом прямо сейчас
+    url: https://nullday.ru
+    about: Issues репозитория — не канал экстренной поддержки. Для реального инцидента — sos@nullday.ru
