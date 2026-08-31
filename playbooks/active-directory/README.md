@@ -28,7 +28,7 @@
 ## Шаг 1. Установка Windows Server
 
 ```powershell
-# После установки — задать имя компьютера (то же, что было у DC)
+# После установки – задать имя компьютера (то же, что было у DC)
 Rename-Computer -NewName "DC01" -Restart
 
 # Задать статический IP
@@ -68,7 +68,7 @@ wbadmin start systemstaterecovery `
     -machine:DC01 `
     -quiet
 
-# После восстановления — выполнить авторитетное восстановление (если нужно)
+# После восстановления – выполнить авторитетное восстановление (если нужно)
 ntdsutil
 # В ntdsutil:
 # activate instance ntds

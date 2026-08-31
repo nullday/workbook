@@ -148,7 +148,7 @@ foreach ($share in $shares) {
         -EncryptData $true `
         -FolderEnumerationMode AccessBased  # Пользователи видят только доступные им папки
     
-    # Права на уровне SMB — только Full Access для всех (права регулируются через NTFS)
+    # Права на уровне SMB – только Full Access для всех (права регулируются через NTFS)
     Grant-SmbShareAccess -Name $share.Name -AccountName "Everyone" `
         -AccessRight Full -Force
 }

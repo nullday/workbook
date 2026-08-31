@@ -44,7 +44,7 @@
     /NPENABLED=0 `
     /IACCEPTSQLSERVERLICENSETERMS
 
-# После установки — включить TCP/IP в SQL Server Configuration Manager
+# После установки – включить TCP/IP в SQL Server Configuration Manager
 # SQL Server Configuration Manager → SQL Server Network Configuration
 # → Protocols for MSSQLSERVER → TCP/IP → Enable
 ```
@@ -79,7 +79,7 @@ FROM sys.databases
 WHERE name = 'Accounting'
 ```
 
-### Если бэкап SQL повреждён — восстановление из файловой копии ИБ
+### Если бэкап SQL повреждён – восстановление из файловой копии ИБ
 
 ```sql
 -- Создать пустую базу для файловой ИБ
@@ -128,7 +128,7 @@ GRANT CREATE ANY DATABASE TO [COMPANY\1c_service]
 # Запустить setup.exe из дистрибутива 1С
 
 # Компоненты для установки:
-# ✓ 1С:Предприятие — сервер (обязательно)
+# ✓ 1С:Предприятие – сервер (обязательно)
 # ✓ Модули расширения веб-сервера (если используется веб-клиент)
 # ✓ Сервер хранилища конфигурации (если используется хранилище)
 
@@ -236,7 +236,7 @@ Get-Content "C:\Program Files\1cv8\srvinfo\srvrib.lst"
 2. Добавить информационную базу → На сервере 1С
 3. Кластер: `1C-SERVER`, База: `Accounting`
 4. Войти под тестовым пользователем
-5. Открыть любой справочник или документ — убедиться в наличии данных
+5. Открыть любой справочник или документ – убедиться в наличии данных
 
 ---
 

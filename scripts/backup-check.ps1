@@ -16,7 +16,7 @@ param(
     # Максимально допустимый возраст бэкапа в часах
     [int]$MaxAgeHours = 26,  # 26 = суточный бэкап с запасом
     
-    # Минимально допустимый размер файла бэкапа (в МБ) — защита от пустых файлов
+    # Минимально допустимый размер файла бэкапа (в МБ) – защита от пустых файлов
     [int]$MinSizeMB = 100
 )
 
@@ -33,7 +33,7 @@ $BackupTargets = @(
         Critical    = $true        # Критически важная система
     },
     @{
-        Name        = "SQL Server — 1С Бухгалтерия"
+        Name        = "SQL Server – 1С Бухгалтерия"
         Path        = "$BackupRootPath\SQL\Accounting"
         Pattern     = "*.bak"
         MaxAgeHours = 26
@@ -41,7 +41,7 @@ $BackupTargets = @(
         Critical    = $true
     },
     @{
-        Name        = "SQL Server — 1С Зарплата"
+        Name        = "SQL Server – 1С Зарплата"
         Path        = "$BackupRootPath\SQL\ZUP"
         Pattern     = "*.bak"
         MaxAgeHours = 26
@@ -87,9 +87,9 @@ foreach ($target in $BackupTargets) {
         Name        = $target.Name
         Status      = "OK"
         StatusIcon  = "✅"
-        LastBackup  = "—"
-        Age         = "—"
-        Size        = "—"
+        LastBackup  = "–"
+        Age         = "–"
+        Size        = "–"
         Issue       = ""
         Critical    = $target.Critical
     }
@@ -163,9 +163,9 @@ foreach ($target in $BackupTargets) {
 # Формирование отчёта
 # ─────────────────────────────────────────────
 $overallStatus = if ($hasCriticalErrors) {
-    "🔴 КРИТИЧЕСКАЯ ОШИБКА — ТРЕБУЕТСЯ НЕМЕДЛЕННОЕ ВНИМАНИЕ"
+    "🔴 КРИТИЧЕСКАЯ ОШИБКА – ТРЕБУЕТСЯ НЕМЕДЛЕННОЕ ВНИМАНИЕ"
 } elseif ($hasErrors) {
-    "🟡 ПРЕДУПРЕЖДЕНИЕ — ЕСТЬ ПРОБЛЕМЫ С РЕЗЕРВНЫМ КОПИРОВАНИЕМ"
+    "🟡 ПРЕДУПРЕЖДЕНИЕ – ЕСТЬ ПРОБЛЕМЫ С РЕЗЕРВНЫМ КОПИРОВАНИЕМ"
 } else {
     "✅ ВСЕ РЕЗЕРВНЫЕ КОПИИ В ПОРЯДКЕ"
 }
@@ -258,7 +258,7 @@ if ($SmtpServer -and $ReportEmail) {
         Send-MailMessage `
             -To $ReportEmail `
             -From $SmtpUser `
-            -Subject "$subjectPrefix Резервные копии — $reportDate" `
+            -Subject "$subjectPrefix Резервные копии – $reportDate" `
             -Body $htmlBody `
             -BodyAsHtml `
             -SmtpServer $SmtpServer `

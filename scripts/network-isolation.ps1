@@ -58,7 +58,7 @@ function Invoke-Isolation {
     Write-Log "=== НАЧАЛО ИЗОЛЯЦИИ ===" "WARN"
     
     if ($LogOnly) {
-        Write-Log "Режим LogOnly — изоляция не выполняется" "WARN"
+        Write-Log "Режим LogOnly – изоляция не выполняется" "WARN"
         return
     }
     

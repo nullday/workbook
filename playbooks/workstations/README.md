@@ -24,7 +24,7 @@
 # Указать источник: сетевое хранилище или локальный диск
 # Выбрать образ → Восстановить
 
-# После восстановления и загрузки — выполнить скрипт персонализации:
+# После восстановления и загрузки – выполнить скрипт персонализации:
 # (запустить от имени администратора)
 
 # Переименовать компьютер
@@ -127,7 +127,7 @@ Write-Host "Пользователь: $UserFullName" -ForegroundColor Yellow
 Write-Host "`n[1/8] Переименование компьютера..." -ForegroundColor Green
 Rename-Computer -NewName $ComputerName -Force
 
-# 2. Настройка сети — получение IP от DHCP (обычно уже настроено)
+# 2. Настройка сети – получение IP от DHCP (обычно уже настроено)
 Write-Host "[2/8] Проверка сети..." -ForegroundColor Green
 $adapter = Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object -First 1
 Set-DnsClientServerAddress -InterfaceAlias $adapter.Name `
@@ -173,7 +173,7 @@ Disable-WindowsOptionalFeature -Online -FeatureName "SMB1Protocol" -NoRestart
 # 7. Установка базового ПО (через winget или ручные пакеты)
 Write-Host "[7/8] Установка базового ПО..." -ForegroundColor Green
 
-# Антивирус — пример для Kaspersky Endpoint Security
+# Антивирус – пример для Kaspersky Endpoint Security
 if (Test-Path "\\FS01\IT\Software\KES\setup_kes.exe") {
     Start-Process "\\FS01\IT\Software\KES\setup_kes.exe" `
         -ArgumentList "/s /pEULA=1 /pKSN=0 /pALLOWREBOOT=0" -Wait
